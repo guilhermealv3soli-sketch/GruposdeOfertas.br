@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GruposdeOfertas.br</title>
+  <meta name="description" content="As melhores promoções e cupons. Entre nos grupos oficiais." />
+  <style>
+    :root{
+      --bg:#0b0d10;
+      --border:#242a33;
+      --text:#e9eef6;
+      --muted:#9aa6b2;
+      --accent:#2d7dff;
+      --success:#22c55e;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 700px at 50% -150px, rgba(45,125,255,.22), transparent 60%),
+                  radial-gradient(900px 600px at 10% 10%, rgba(34,197,94,.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 40px 16px 80px; }
+
+    .brand{
+      display:flex; flex-direction:column; align-items:center; gap:14px;
+      margin-bottom:22px; text-align:center;
+    }
+
+    .topLogo{
+      width:92px; height:92px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 0 0 6px rgba(45,125,255,.12), 0 10px 40px rgba(0,0,0,.5);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .topLogo img{ width:100%; height:100%; object-fit: cover; display:block; }
+
+    h1{ margin:0; font-size: clamp(26px, 3.2vw, 34px); letter-spacing:.2px; }
+    .subtitle{
+      margin:0; color: var(--muted); font-size: 14px;
+      max-width: 560px; line-height: 1.4;
+    }
+
+    .section{
+      margin-top: 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; color: var(--muted); font-size: 12px;
+      letter-spacing:.9px; text-transform:uppercase;
+    }
+    .section .left{ display:flex; align-items:center; gap:10px; }
+    .dot{ width:8px; height:8px; border-radius:999px; background: var(--success); box-shadow: 0 0 0 5px rgba(34,197,94,.12); }
+    .hint{ opacity:.75; }
+
+    .banner{
+      margin-top: 12px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .banner strong{ font-size:14px; }
+    .banner span{ color: var(--muted); font-size: 13px; }
+    .pill{
+      font-size:12px; padding: 6px 10px; border-radius: 999px;
+      border:1px solid rgba(45,125,255,.35);
+      color:#dbe8ff; background: rgba(45,125,255,.14); white-space:nowrap;
+    }
+
+    .list{ margin-top: 16px; display:flex; flex-direction:column; gap: 14px; }
+
+    details.card{
+      border:1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    summary{
+      list-style:none; cursor:pointer; padding: 16px 18px;
+      display:flex; align-items:center; gap: 14px; user-select:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+
+    .avatar{
+      width:54px; height:54px; border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      flex: 0 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .avatar img{ width:100%; height:100%; object-fit: cover; display:block; }
+
+    .meta{ min-width:0; flex: 1 1 auto; display:flex; flex-direction:column; gap: 3px; }
+    .title{ font-weight:800; font-size: 18px; line-height: 1.1; }
+    .desc{ color: var(--muted); font-size: 13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+    .actions{ display:flex; align-items:center; gap: 10px; flex: 0 0 auto; }
+    .btn{
+      border:1px solid rgba(45,125,255,.32);
+      background: rgba(45,125,255,.12);
+      color:#dbe8ff; font-weight:800; font-size: 12px;
+      padding: 8px 12px; border-radius: 10px; letter-spacing:.25px;
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .chev{ width:20px;height:20px; display:grid;place-items:center; color: var(--muted); transition: transform .18s ease; }
+    details[open] summary .chev{ transform: rotate(180deg); }
+
+    .content{ padding: 0 18px 18px; }
+
+    .linkBtn{
+      width:100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 14px 14px;
+      display:flex; align-items:center; gap: 12px;
+      text-decoration:none; color: var(--text);
+      background: rgba(16,19,24,.75);
+      transition: transform .08s ease, border-color .12s ease, background .12s ease;
+    }
+    .linkBtn:hover{ transform: translateY(-1px); border-color: rgba(45,125,255,.35); background: rgba(16,19,24,.9); }
+
+    .linkIcon{
+      width:42px; height:42px; border-radius: 14px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      flex:0 0 auto;
+    }
+    .linkText{ display:flex; flex-direction:column; gap:2px; min-width:0; flex:1 1 auto; }
+    .linkText strong{ font-size: 15px; letter-spacing:.1px; }
+    .linkText span{ font-size: 12px; color: var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+    .footer{ margin-top: 18px; color: rgba(154,166,178,.85); font-size: 12px; text-align:center; }
+
+    @media (max-width: 520px){
+      .btn{ display:none; }
+      .desc{ display:none; }
+      .avatar{ width:50px; height:50px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <header class="brand">
+      <!-- ✅ NOME CERTO -->
+      <div class="topLogo">
+        <img src="logo-principal.png" alt="Logo principal" />
+      </div>
+
+      <h1>GruposdeOfertas.br</h1>
+      <p class="subtitle">
+        As melhores promoções e cupons. Clique em <b>VER LINKS</b> no grupo que você quer para entrar.
+      </p>
+    </header>
+
+    <section class="list" id="list">
+
+      <!-- 1 - Instagram -->
+      <details class="card">
+        <summary>
+          <div class="avatar">
+            <img src="logo-principal.png" alt="Instagram" />
+          </div>
+          <div class="meta">
+            <div class="title">Instagram</div>
+            <div class="desc">@gruposdeofertas.br</div>
+          </div>
+          <div class="actions">
+            <span class="btn">VER LINKS</span>
+            <span class="chev" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </summary>
+        <div class="content">
+          <a class="linkBtn" href="https://www.instagram.com/gruposdeofertas.br/" target="_blank" rel="noopener">
+            <span class="linkIcon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor"/>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor"/>
+                <path d="M17.5 6.5h.01" stroke="currentColor" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="linkText">
+              <strong>Visitar o Instagram</strong>
+              <span>https://www.instagram.com/gruposdeofertas.br/</span>
+            </span>
+          </a>
+        </div>
+      </details>
+
+      <!-- 2 - Promoções Gerais -->
+      <details class="card">
+        <summary>
+          <div class="avatar">
+            <!-- ✅ NOME CERTO (PNG) -->
+            <img src="logo-gerais.png" alt="Promoções Gerais" />
+          </div>
+          <div class="meta">
+            <div class="title">Promoções Gerais</div>
+            <div class="desc">Grupo geral de ofertas</div>
+          </div>
+          <div class="actions">
+            <span class="btn">VER LINKS</span>
+            <span class="chev" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </summary>
+        <div class="content">
+          <a class="linkBtn" href="https://t.me/promocoesgeraI" target="_blank" rel="noopener">
+            <span class="linkIcon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M21.7 4.2 3.7 11.2c-.9.35-.84 1.65.1 1.9l4.7 1.25 1.7 5.2c.22.67 1.06.85 1.52.34l2.7-3.0 4.9 3.6c.58.43 1.4.11 1.57-.6l3.1-15.0c.17-.82-.62-1.5-1.46-1.2Z" stroke="currentColor"/>
+                <path d="M8.4 14.2 19.3 6.6" stroke="currentColor"/>
+              </svg>
+            </span>
+            <span class="linkText">
+              <strong>Entrar no Telegram</strong>
+              <span>https://t.me/promocoesgeraI</span>
+            </span>
+          </a>
+        </div>
+      </details>
+
+      <!-- 3 - Promoções Gamer -->
+      <details class="card">
+        <summary>
+          <div class="avatar">
+            <img src="logo-gamer.jpeg" alt="Promoções Gamer" />
+          </div>
+          <div class="meta">
+            <div class="title">Promoções Gamer</div>
+            <div class="desc">Hardware • periféricos • games</div>
+          </div>
+          <div class="actions">
+            <span class="btn">VER LINKS</span>
+            <span class="chev" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </summary>
+        <div class="content">
+          <a class="linkBtn" href="https://t.me/promocoesgamer1br" target="_blank" rel="noopener">
+            <span class="linkIcon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M21.7 4.2 3.7 11.2c-.9.35-.84 1.65.1 1.9l4.7 1.25 1.7 5.2c.22.67 1.06.85 1.52.34l2.7-3.0 4.9 3.6c.58.43 1.4.11 1.57-.6l3.1-15.0c.17-.82-.62-1.5-1.46-1.2Z" stroke="currentColor"/>
+                <path d="M8.4 14.2 19.3 6.6" stroke="currentColor"/>
+              </svg>
+            </span>
+            <span class="linkText">
+              <strong>Entrar no Telegram</strong>
+              <span>https://t.me/promocoesgamer1br</span>
+            </span>
+          </a>
+        </div>
+      </details>
+
+      <!-- 4 - Promoções da Pescaria -->
+      <details class="card">
+        <summary>
+          <div class="avatar">
+            <img src="logo-pesca.jpeg" alt="Promoções da Pescaria" />
+          </div>
+          <div class="meta">
+            <div class="title">Promoções da Pescaria</div>
+            <div class="desc">Iscas • varas • carretilhas</div>
+          </div>
+          <div class="actions">
+            <span class="btn">VER LINKS</span>
+            <span class="chev" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </summary>
+        <div class="content">
+          <a class="linkBtn" href="https://t.me/promodapescaria" target="_blank" rel="noopener">
+            <span class="linkIcon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M21.7 4.2 3.7 11.2c-.9.35-.84 1.65.1 1.9l4.7 1.25 1.7 5.2c.22.67 1.06.85 1.52.34l2.7-3.0 4.9 3.6c.58.43 1.4.11 1.57-.6l3.1-15.0c.17-.82-.62-1.5-1.46-1.2Z" stroke="currentColor"/>
+                <path d="M8.4 14.2 19.3 6.6" stroke="currentColor"/>
+              </svg>
+            </span>
+            <span class="linkText">
+              <strong>Entrar no Telegram</strong>
+              <span>https://t.me/promodapescaria</span>
+            </span>
+          </a>
+        </div>
+      </details>
+
+      <!-- 5 - Só Cupons Selecionados -->
+      <details class="card">
+        <summary>
+          <div class="avatar">
+            <img src="logo-cupons.png" alt="Só Cupons Selecionados" />
+          </div>
+          <div class="meta">
+            <div class="title">Só Cupons Selecionados</div>
+            <div class="desc">Cupons filtrados (só o que vale)</div>
+          </div>
+          <div class="actions">
+            <span class="btn">VER LINKS</span>
+            <span class="chev" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </summary>
+        <div class="content">
+          <a class="linkBtn" href="https://t.me/osmelhorescupon" target="_blank" rel="noopener">
+            <span class="linkIcon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M21.7 4.2 3.7 11.2c-.9.35-.84 1.65.1 1.9l4.7 1.25 1.7 5.2c.22.67 1.06.85 1.52.34l2.7-3.0 4.9 3.6c.58.43 1.4.11 1.57-.6l3.1-15.0c.17-.82-.62-1.5-1.46-1.2Z" stroke="currentColor"/>
+                <path d="M8.4 14.2 19.3 6.6" stroke="currentColor"/>
+              </svg>
+            </span>
+            <span class="linkText">
+              <strong>Entrar no Telegram</strong>
+              <span>https://t.me/osmelhorescupon</span>
+            </span>
+          </a>
+        </div>
+      </details>
+
+    </section>
+
+    <div class="footer">
+      © <span id="year"></span> GruposdeOfertas.br • Feito para divulgação de links oficiais
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const cards = [...document.querySelectorAll("details.card")];
+    cards.forEach((d) => {
+      d.addEventListener("toggle", () => {
+        if (!d.open) return;
+        cards.forEach((other) => { if (other !== d) other.open = false; });
+      });
+    });
+  </script>
+</body>
+</html>
